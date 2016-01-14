@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpTax list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tax</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dpTax in dpTaxes %}
+            <tr>
+                <td><a href="{{ path('dptax_show', { 'id': dpTax.id }) }}">{{ dpTax.id }}</a></td>
+                <td>{{ dpTax.tax }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dptax_show', { 'id': dpTax.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dptax_edit', { 'id': dpTax.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dptax_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

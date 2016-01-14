@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpTransaction list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dpTransaction in dpTransactions %}
+            <tr>
+                <td><a href="{{ path('dptransaction_show', { 'id': dpTransaction.id }) }}">{{ dpTransaction.id }}</a></td>
+                <td>{% if dpTransaction.time %}{{ dpTransaction.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ dpTransaction.amount }}</td>
+                <td>{{ dpTransaction.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dptransaction_show', { 'id': dpTransaction.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dptransaction_edit', { 'id': dpTransaction.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dptransaction_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

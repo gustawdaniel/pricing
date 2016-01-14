@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpTax</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dpTax.id }}</td>
+            </tr>
+            <tr>
+                <th>Tax</th>
+                <td>{{ dpTax.tax }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dptax_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dptax_edit', { 'id': dpTax.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

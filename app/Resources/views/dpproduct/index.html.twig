@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpProduct list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Wholesaleprice</th>
+                <th>Shopprice</th>
+                <th>Proposedprice</th>
+                <th>Lastrequest</th>
+                <th>Lastupdate</th>
+                <th>Periodupdate</th>
+                <th>Periodrequest</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dpProduct in dpProducts %}
+            <tr>
+                <td><a href="{{ path('dpproduct_show', { 'id': dpProduct.id }) }}">{{ dpProduct.id }}</a></td>
+                <td>{{ dpProduct.name }}</td>
+                <td>{{ dpProduct.description }}</td>
+                <td>{{ dpProduct.wholesalePrice }}</td>
+                <td>{{ dpProduct.shopPrice }}</td>
+                <td>{{ dpProduct.proposedPrice }}</td>
+                <td>{% if dpProduct.lastRequest %}{{ dpProduct.lastRequest|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if dpProduct.lastUpdate %}{{ dpProduct.lastUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if dpProduct.periodUpdate %}{{ dpProduct.periodUpdate|date('H:i:s') }}{% endif %}</td>
+                <td>{% if dpProduct.periodRequest %}{{ dpProduct.periodRequest|date('H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dpproduct_show', { 'id': dpProduct.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dpproduct_edit', { 'id': dpProduct.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dpproduct_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

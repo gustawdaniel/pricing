@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpTransaction</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dpTransaction.id }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{% if dpTransaction.time %}{{ dpTransaction.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ dpTransaction.amount }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ dpTransaction.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dptransaction_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dptransaction_edit', { 'id': dpTransaction.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

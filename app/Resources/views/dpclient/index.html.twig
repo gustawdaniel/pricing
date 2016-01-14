@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpClient list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>State</th>
+                <th>Starttime</th>
+                <th>Token</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dpClient in dpClients %}
+            <tr>
+                <td><a href="{{ path('dpclient_show', { 'id': dpClient.id }) }}">{{ dpClient.id }}</a></td>
+                <td>{{ dpClient.name }}</td>
+                <td>{{ dpClient.url }}</td>
+                <td>{{ dpClient.state }}</td>
+                <td>{% if dpClient.startTime %}{{ dpClient.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ dpClient.token }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dpclient_show', { 'id': dpClient.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dpclient_edit', { 'id': dpClient.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dpclient_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DpClient</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dpClient.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ dpClient.name }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ dpClient.url }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ dpClient.state }}</td>
+            </tr>
+            <tr>
+                <th>Starttime</th>
+                <td>{% if dpClient.startTime %}{{ dpClient.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ dpClient.token }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dpclient_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dpclient_edit', { 'id': dpClient.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
